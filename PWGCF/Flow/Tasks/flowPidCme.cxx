@@ -312,13 +312,13 @@ struct FillPIDcolums {
       pidVectorUpper = pidVectorTPCPtUpper;
       pidVectorLower = pidVectorTPCPtLower;
     } else {
-      if(candidate.pt() > cfgPtMaxforTPCOnlyPID && candidate.hasTOF()){
+      if (candidate.pt() > cfgPtMaxforTPCOnlyPID && candidate.hasTOF()) {
         nSigmaToUse = nSigmaCombined;
         pidVectorUpper = cfgnSigmaCutRMSUpper.value;
         pidVectorLower = cfgnSigmaCutRMSLower.value;
-      }else if(candidate.pt() > cfgPtMaxforTPCOnlyPID && !candidate.hasTOF() && cfgUseStrictPID){
+      } else if (candidate.pt() > cfgPtMaxforTPCOnlyPID && !candidate.hasTOF() && cfgUseStrictPID) {
         return 0;
-      }else{
+      } else {
         nSigmaToUse = nSigmaTPC;
         pidVectorUpper = cfgnSigmaCutTPCUpper.value;
         pidVectorLower = cfgnSigmaCutTPCLower.value;
@@ -457,12 +457,12 @@ struct FillPIDcolums {
         }
       }
     }
-    if(cfgUseStrictPID){
+    if (cfgUseStrictPID) {
       // Only use the track which was recognized as an unique PID particle
       int index = (kIsPr << 2) | (kIsKa << 1) | kIsPi;
       const int map[] = {0, 1, 2, 0, 3, 0, 0, 0};
       return map[index];
-    }else{
+    } else {
       if (cfgOpenAllowCrossTrack) {
         // one track can be recognized as different PID particles
         int index = (kIsPr << 2) | (kIsKa << 1) | kIsPi;
